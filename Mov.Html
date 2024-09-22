@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Movie Recommendation System</title>
+
+</head>
+
+<body>
+
+    <h1>Movie Recommendation System</h1>
+
+    <input type="text" id="genre" placeholder="Enter genre (e.g., Sci-Fi)">
+
+    <button onclick="getRecommendations()">Get Recommendations</button>
+
+    <div id="recommendations"></div>
+
+
+
+    <h2>ChatGPT Recommendations</h2>
+
+    <textarea id="chatgptPrompt" placeholder="Ask ChatGPT for movie recommendations..."></textarea>
+
+    <button onclick="getChatGPTRecommendation()">Ask ChatGPT</button>
+
+    <div id="chatgptResponse"></div>
+
+
+
+    <script>
+
+        async function getRecommendations() {
+
+            const genre = document.getElementById('genre').value;
+
+            const response = await fetch(`http://127.0.0.1:8000/recommendations/${genre}`);
+
+            const data = await response.json();
+
+            const recommendationsDiv = document.getElementById('recommendations');
+
+            recommendationsDiv.innerHTML = '';
+
+
+
+            if (response.ok) {
+
+                data.forEach(movie => {
+
+                    recommendationsDiv.innerHTML += `<p>${movie.title} - ${movie.description}</p>`;
+
+                });
+
+            } else {
+
+                recommendationsDiv.innerHTML = `<p>${data.message}</p>`;
+
+            }
+
+        }
+
+
+
+        async function getChatGPTRecommendation() {
+
+            const prompt = document.getElementById('chatgptPrompt').value;
+
+            const response = await fetch('http://127.0.0.1:8000/chatgpt/recommend', {
+
+                method: 'POST',
+
+                headers: {
+
+                    'Content-Type': 'application/json',
+
+                },
+
+                body: JSON.stringify({ prompt })
+
+            });
+
+            const data = await response.json();
+
+            const chatgptResponseDiv = document.getElementById('chatgptResponse');
+
+            chatgptResponseDiv.innerHTML = `<p>${data.recommendation}</p>`;
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+
