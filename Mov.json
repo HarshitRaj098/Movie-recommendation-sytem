@@ -1,0 +1,40 @@
+[
+
+    {
+
+        "id": 1,
+
+        "title": "Inception",
+
+        "genres": ["Action", "Sci-Fi", "Thriller"],
+
+        "description": "A thief who steals corporate secrets through the use of dream-sharing technology."
+
+    },
+
+    {
+
+        "id": 2,
+
+        "title": "The Matrix",
+
+        "genres": ["Action", "Sci-Fi"],
+
+        "description": "A computer hacker learns about the true nature of his reality."
+
+    },
+
+    {
+
+        "id": 3,
+
+        "title": "Interstellar",
+
+        "genres": ["Adventure", "Drama", "Sci-Fi"],
+
+        "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival."
+
+    }
+
+]
+
